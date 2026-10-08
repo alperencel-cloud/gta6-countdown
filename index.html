@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA 6 Countdown</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(160deg, #1a0533, #6a1b5e, #ff6f61);
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 15px #ff4fd8;
+    }
+    .timer {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 2px solid #ff4fd8;
+      border-radius: 12px;
+      padding: 20px;
+      min-width: 90px;
+    }
+    .number { font-size: 3rem; font-weight: bold; }
+    .label  { font-size: 0.9rem; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <h1>GTA 6 COUNTDOWN</h1>
+  <p>Release date: November 19, 2026</p>
+
+  <div class="timer" id="timer">
+    <div class="box"><div class="number" id="days">0</div><div class="label">DAYS</div></div>
+    <div class="box"><div class="number" id="hours">0</div><div class="label">HOURS</div></div>
+    <div class="box"><div class="number" id="minutes">0</div><div class="label">MINUTES</div></div>
+    <div class="box"><div class="number" id="seconds">0</div><div class="label">SECONDS</div></div>
+  </div>
+
+  <script>
+    // Change this date if the release moves
+    const releaseDate = new Date("2026-11-19T00:00:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = releaseDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("timer").innerHTML = "<h2>IT'S OUT! GO PLAY! 🎮</h2>";
+        return;
+      }
+
+      document.getElementById("days").textContent    = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").textContent   = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").textContent = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000); // update every second
+  </script>
+</body>
+</html>
